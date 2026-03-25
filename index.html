@@ -3086,6 +3086,10 @@ function openSignatureFlow(docId){
   const doc=CFG.docHistory.find(h=>h.id===docId); if(!doc) return;
   _currentSignDocId=docId;
 
+  // Salva o documento na nuvem imediatamente ao abrir o flow
+  // Isso garante que o link funcione no celular do cliente
+  vxSaveDocument(doc).catch(()=>{});
+
   // Show share options (WhatsApp / Email / Self-sign)
   let pm=document.getElementById('shareModal');
   if(!pm){
@@ -3133,11 +3137,16 @@ ${currentUser?.name||CFG.company}`);
         onclick="markDocSent('${docId}')">
         <span style="font-size:20px">💬</span> Enviar via WhatsApp
       </a>
-      <a href="mailto:${clientEmail}?subject=${emailSubj}&body=${emailBody}" 
-        style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:10px;color:var(--accent);font-family:DM Mono,monospace;font-size:13px;font-weight:600;text-decoration:none"
-        onclick="markDocSent('${docId}')">
-        <span style="font-size:20px">📧</span> Enviar por E-mail
-      </a>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:8px;align-items:center">
+          <input id="shareEmailInput" type="email" value="${clientEmail}" placeholder="email do cliente"
+            style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:DM Mono,monospace;font-size:12px;color:var(--text);outline:none">
+        </div>
+        <button onclick="sendEmailShare('${docId}','${emailSubj}','${emailBody}')"
+          style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:10px;color:var(--accent);font-family:DM Mono,monospace;font-size:13px;font-weight:600;cursor:pointer;width:100%">
+          <span style="font-size:20px">📧</span> Enviar por E-mail
+        </button>
+      </div>
       <button onclick="openSelfSign('${docId}')"
         style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;color:var(--accent3);font-family:DM Mono,monospace;font-size:13px;font-weight:600;cursor:pointer">
         <span style="font-size:20px">✍️</span> Assinar agora (esta tela)
@@ -3147,6 +3156,18 @@ ${currentUser?.name||CFG.company}`);
       style="width:100%;padding:11px;border-radius:10px;background:rgba(100,116,139,.12);border:1px solid rgba(100,116,139,.3);color:var(--muted);font-family:DM Mono,monospace;font-size:13px;cursor:pointer">Fechar</button>
   </div>`;
   pm.style.display='flex';
+}
+
+function sendEmailShare(docId, emailSubj, emailBody){
+  const emailInput = document.getElementById('shareEmailInput');
+  const email = emailInput ? emailInput.value.trim() : '';
+  if(!email){ 
+    toast('Digite o e-mail do cliente antes de enviar.', true); 
+    if(emailInput) emailInput.focus();
+    return; 
+  }
+  markDocSent(docId);
+  window.open('mailto:'+email+'?subject='+emailSubj+'&body='+emailBody, '_blank');
 }
 
 function buildSignUrl(doc){
