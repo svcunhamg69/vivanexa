@@ -1006,6 +1006,16 @@ async function vxSyncConfig() {
 
 // Auto-sync: sempre que saveConfig() rodar, sincroniza com Supabase
 const _origSaveConfig = typeof saveConfig === 'function' ? saveConfig : null;
+   // Auto-sync: intercepta saveConfig e sincroniza com Supabase
+if (typeof saveConfig === 'function') {
+  saveConfig = (function(original) {
+    return function(...args) {
+      const result = original.apply(this, args);
+      vxSyncConfig(); // Sincroniza com nuvem após salvar
+      return result;
+    };
+  })(saveConfig);
+}
 
 // ══════════════════════════════════════════════
 // CONSTANTS & DEFAULTS
