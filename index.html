@@ -60,7 +60,7 @@
     </div>
   </nav>
 
-  <!-- HERO (mantido igual) -->
+  <!-- HERO -->
   <section class="hero-bg pt-28 pb-20">
     <div class="max-w-6xl mx-auto px-6 text-center">
       <div class="inline-flex items-center gap-2 bg-white/10 px-6 py-2 rounded-3xl mb-6 text-cyan-400 text-sm">
@@ -78,14 +78,72 @@
         <a href="#captura" class="bg-white text-black font-bold text-xl px-12 py-6 rounded-3xl hover:scale-105 transition flex items-center justify-center gap-3">
           <i class="fas fa-rocket"></i> Quero Testar Grátis por 14 Dias
         </a>
-        <a href="https://vivanexa-saas.vercel.app/" target="_blank" class="border-2 border-white/70 hover:border-white font-medium text-xl px-10 py-6 rounded-3xl transition">
+        <a href="https://vivanexa-saas.vercel.app/" target="_blank" 
+           class="border-2 border-white/70 hover:border-white font-medium text-xl px-10 py-6 rounded-3xl transition">
           Ver Dashboard ao Vivo →
         </a>
       </div>
     </div>
   </section>
 
-  <!-- PLANOS (sem preços) -->
+  <!-- FUNCIONALIDADES -->
+  <section id="funcionalidades" class="py-20 bg-[#111113]">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-4">Tudo em uma única plataforma</h2>
+      <p class="text-center text-gray-400 text-xl max-w-2xl mx-auto">Comercial • Marketing • Financeiro • Automação com IA</p>
+
+      <div class="grid md:grid-cols-2 gap-8 mt-16">
+        <div class="space-y-8">
+          <div class="flex gap-6">
+            <div class="text-5xl">🤖</div>
+            <div>
+              <h3 class="text-2xl font-semibold">Agente IA (Grok, Gemini, OpenAI)</h3>
+              <p class="text-gray-400">Treine a IA para atender 24h, qualificar leads e fechar vendas automaticamente.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="text-5xl">💼</div>
+            <div>
+              <h3 class="text-2xl font-semibold">Assistente Comercial Inteligente</h3>
+              <p class="text-gray-400">Simula negociação, aplica descontos, gera proposta + contrato com contagem regressiva.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="text-5xl">📄</div>
+            <div>
+              <h3 class="text-2xl font-semibold">Contratos com Assinatura Eletrônica</h3>
+              <p class="text-gray-400">Válida pela Lei 14.063/2020. Envie por WhatsApp ou e-mail com histórico completo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-8">
+          <div class="flex gap-6">
+            <div class="text-5xl">📈</div>
+            <div>
+              <h3 class="text-2xl font-semibold">Marketing com IA</h3>
+              <p class="text-gray-400">Integra Meta Ads, Google e TikTok. Gera conteúdo e agenda de publicações automaticamente.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="text-5xl">💰</div>
+            <div>
+              <h3 class="text-2xl font-semibold">Financeiro com ASAAS</h3>
+              <p class="text-gray-400">Contas a pagar/receber, boletos, PIX, cartão e cálculo automático de comissões.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="text-5xl">📊</div>
+            <div>
+              <h3 class="text-2xl font-semibold">CRM + Gerador de Leads</h3>
+              <p class="text-gray-400">Controle de oportunidades, KPIs do time e geração de leads por nicho.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS SEM PREÇOS -->
   <section id="planos" class="py-20 bg-[#111113]">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-12">
@@ -133,17 +191,17 @@
   </section>
 
   <!-- DEPOIMENTOS - CARROSSEL COM SETAS -->
-  <section id="depoimentos" class="py-20 bg-[#111113]">
+  <section id="depoimentos" class="py-20 bg-[#0a0a0a]">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-4xl font-bold text-center mb-12">Quem já triplicou as vendas com Vivanexa</h2>
       
-      <div class="carousel-container">
-        <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black p-4 rounded-full z-10 ml-4">
+      <div class="carousel-container relative">
+        <button onclick="scrollCarousel(-1)" 
+                class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black p-4 rounded-full z-10 text-white">
           <i class="fas fa-chevron-left text-2xl"></i>
         </button>
-        
+
         <div id="carousel" class="carousel">
-          <!-- 10 Depoimentos -->
           <div class="carousel-card">
             <p class="italic">"No primeiro mês já triplicamos o número de vendas. O assistente comercial com contagem regressiva fechou 7 negócios que estavam parados!"</p>
             <div class="mt-8 flex items-center gap-4">
@@ -225,19 +283,58 @@
           </div>
         </div>
 
-        <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black p-4 rounded-full z-10 mr-4">
+        <button onclick="scrollCarousel(1)" 
+                class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black p-4 rounded-full z-10 text-white">
           <i class="fas fa-chevron-right text-2xl"></i>
         </button>
       </div>
     </div>
   </section>
 
-  <!-- Seção de Dúvidas, Formulário e Footer permanecem iguais (posso adicionar se precisar) -->
+  <!-- FORMULÁRIO DE CAPTURA -->
+  <section id="captura" class="py-20 bg-[#111113]">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="bg-[#1a1a1e] rounded-3xl p-10">
+        <h2 class="text-4xl font-bold text-center mb-3">Quer testar a Vivanexa grátis?</h2>
+        <p class="text-center text-gray-400 mb-10">Preencha abaixo e nosso time entrará em contato em até 24h.</p>
+        
+        <form id="leadForm" class="space-y-6">
+          <div>
+            <label class="block text-sm text-gray-400 mb-2">Seu nome completo</label>
+            <input type="text" id="nome" required class="w-full bg-[#0a0a0a] border border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400" placeholder="Ex: João Silva">
+          </div>
+          <div>
+            <label class="block text-sm text-gray-400 mb-2">WhatsApp (com DDD)</label>
+            <input type="tel" id="whatsapp" required class="w-full bg-[#0a0a0a] border border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400" placeholder="(11) 98765-4321">
+          </div>
+          <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-bold text-xl py-6 rounded-3xl transition">
+            Quero Meu Teste Grátis de 14 Dias
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="py-24 bg-gradient-to-r from-cyan-500 to-emerald-500 text-black text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-5xl font-bold">Pronto para triplicar suas vendas?</h2>
+      <p class="mt-6 text-2xl">Comece seu teste grátis de 14 dias agora.</p>
+      <a href="#captura" class="mt-10 inline-block bg-black text-white text-2xl font-bold px-16 py-7 rounded-3xl hover:scale-105 transition">
+        Quero Testar Agora
+      </a>
+    </div>
+  </section>
+
+  <footer class="bg-black py-12 text-center text-gray-500 text-sm">
+    © 2026 Vivanexa Technology & Software Development • Todos os direitos reservados
+  </footer>
 
   <script>
+    // Função para navegar no carrossel
     function scrollCarousel(direction) {
       const carousel = document.getElementById('carousel');
-      const scrollAmount = 360; // largura aproximada de um card + gap
+      const scrollAmount = 380; // largura aproximada de um card
       carousel.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
     }
 
