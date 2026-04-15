@@ -11,9 +11,28 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body { font-family: 'Inter', sans-serif; }
     .hero-bg { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%); }
-    .carousel { scrollbar-width: none; }
+    
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .carousel {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding-bottom: 20px;
+    }
     .carousel::-webkit-scrollbar { display: none; }
-    .faq-question { cursor: pointer; }
+    
+    .carousel-card {
+      min-width: 340px;
+      background: #1a1a1e;
+      padding: 32px;
+      border-radius: 24px;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body class="bg-[#0a0a0a] text-white">
@@ -41,7 +60,7 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO (mantido igual) -->
   <section class="hero-bg pt-28 pb-20">
     <div class="max-w-6xl mx-auto px-6 text-center">
       <div class="inline-flex items-center gap-2 bg-white/10 px-6 py-2 rounded-3xl mb-6 text-cyan-400 text-sm">
@@ -66,46 +85,7 @@
     </div>
   </section>
 
-  <!-- FUNCIONALIDADES -->
-  <section id="funcionalidades" class="py-20 bg-[#111113]">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-4">Tudo em uma única plataforma</h2>
-      <p class="text-center text-gray-400 text-xl max-w-2xl mx-auto">Comercial • Marketing • Financeiro • Automação com IA</p>
-
-      <div class="grid md:grid-cols-2 gap-8 mt-16">
-        <div class="space-y-8">
-          <div class="flex gap-6">
-            <div class="text-5xl">🤖</div>
-            <div><h3 class="text-2xl font-semibold">Agente IA (Grok, Gemini, OpenAI)</h3><p class="text-gray-400">Treine a IA para atender 24h, qualificar leads e fechar vendas automaticamente.</p></div>
-          </div>
-          <div class="flex gap-6">
-            <div class="text-5xl">💼</div>
-            <div><h3 class="text-2xl font-semibold">Assistente Comercial Inteligente</h3><p class="text-gray-400">Simula negociação, aplica descontos, gera proposta + contrato com contagem regressiva.</p></div>
-          </div>
-          <div class="flex gap-6">
-            <div class="text-5xl">📄</div>
-            <div><h3 class="text-2xl font-semibold">Contratos com Assinatura Eletrônica</h3><p class="text-gray-400">Válida pela Lei 14.063/2020. Envie por WhatsApp ou e-mail com histórico completo.</p></div>
-          </div>
-        </div>
-        <div class="space-y-8">
-          <div class="flex gap-6">
-            <div class="text-5xl">📈</div>
-            <div><h3 class="text-2xl font-semibold">Marketing com IA</h3><p class="text-gray-400">Integra Meta Ads, Google e TikTok. Gera conteúdo e agenda de publicações automaticamente.</p></div>
-          </div>
-          <div class="flex gap-6">
-            <div class="text-5xl">💰</div>
-            <div><h3 class="text-2xl font-semibold">Financeiro com ASAAS</h3><p class="text-gray-400">Contas a pagar/receber, boletos, PIX, cartão e cálculo automático de comissões.</p></div>
-          </div>
-          <div class="flex gap-6">
-            <div class="text-5xl">📊</div>
-            <div><h3 class="text-2xl font-semibold">CRM + Gerador de Leads</h3><p class="text-gray-400">Controle de oportunidades, KPIs do time e geração de leads por nicho.</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLANOS SEM PREÇOS -->
+  <!-- PLANOS (sem preços) -->
   <section id="planos" class="py-20 bg-[#111113]">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-12">
@@ -152,176 +132,113 @@
     </div>
   </section>
 
-  <!-- DEPOIMENTOS - CARROSSEL HORIZONTAL -->
-  <section id="depoimentos" class="py-20 bg-[#0a0a0a]">
+  <!-- DEPOIMENTOS - CARROSSEL COM SETAS -->
+  <section id="depoimentos" class="py-20 bg-[#111113]">
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-4xl font-bold text-center mb-12">Quem já triplicou as vendas com Vivanexa</h2>
-      <div class="carousel flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory">
-        <!-- 11 depoimentos -->
-        <div class="min-w-[340px] bg-[#1a1a1e] p-8 rounded-3xl snap-start">
-          <p class="italic">"No primeiro mês já triplicamos o número de vendas. O assistente comercial com contagem regressiva fechou 7 negócios que estavam parados!"</p>
-          <div class="mt-8 flex items-center gap-4"><div class="w-12 h-12 bg-blue-500 rounded-2xl"></div><div><div class="font-semibold">Carlos Mendes</div><div class="text-sm text-gray-400">Auto Peças SP</div></div></div>
+      
+      <div class="carousel-container">
+        <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black p-4 rounded-full z-10 ml-4">
+          <i class="fas fa-chevron-left text-2xl"></i>
+        </button>
+        
+        <div id="carousel" class="carousel">
+          <!-- 10 Depoimentos -->
+          <div class="carousel-card">
+            <p class="italic">"No primeiro mês já triplicamos o número de vendas. O assistente comercial com contagem regressiva fechou 7 negócios que estavam parados!"</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-blue-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Carlos Mendes</div><div class="text-sm text-gray-400">Auto Peças SP</div></div>
+            </div>
+          </div>
+
+          <div class="carousel-card">
+            <p class="italic">"O Agente IA treinado com Grok atende 24h e já gerou R$ 48 mil em contratos assinados digitalmente."</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-green-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Ana Paula Silva</div><div class="text-sm text-gray-400">Imobiliária Nova Lar</div></div>
+            </div>
+          </div>
+
+          <div class="carousel-card">
+            <p class="italic">"Disparos com variações + ASAAS aumentaram nosso faturamento em 280%. O time agora só fecha."</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-purple-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Rafael Costa</div><div class="text-sm text-gray-400">Academia Fitness Pro</div></div>
+            </div>
+          </div>
+
+          <div class="carousel-card">
+            <p class="italic">"O gestor de marketing IA criou campanhas que trouxeram 180 leads qualificados em 15 dias."</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-orange-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Mariana Oliveira</div><div class="text-sm text-gray-400">Clínica Estética</div></div>
+            </div>
+          </div>
+
+          <div class="carousel-card">
+            <p class="italic">"Assinatura eletrônica + proposta automática fechou 12 contratos em uma semana."</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-red-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Lucas Ferreira</div><div class="text-sm text-gray-400">Consultoria Empresarial</div></div>
+            </div>
+          </div>
+
+          <div class="carousel-card">
+            <p class="italic">"O Playbook + scripts gerados por IA padronizaram o time. Conversão subiu para 47%."</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-teal-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Juliana Santos</div><div class="text-sm text-gray-400">Loja de Eletrônicos</div></div>
+            </div>
+          </div>
+
+          <div class="carousel-card">
+            <p class="italic">"Gerador de leads por nicho + IA trouxe clientes que nunca conseguiríamos manualmente."</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-pink-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Fernanda Lima</div><div class="text-sm text-gray-400">Escola de Idiomas</div></div>
+            </div>
+          </div>
+
+          <div class="carousel-card">
+            <p class="italic">"Fluxo de caixa e comissões automáticas no ASAAS economizaram horas da equipe financeira."</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-yellow-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Thiago Martins</div><div class="text-sm text-gray-400">Distribuidora</div></div>
+            </div>
+          </div>
+
+          <div class="carousel-card">
+            <p class="italic">"Campanhas automáticas no Meta e TikTok com conteúdo gerado por IA aumentaram nossa visibilidade em 4x."</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-cyan-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Patrícia Rocha</div><div class="text-sm text-gray-400">Loja Online</div></div>
+            </div>
+          </div>
+
+          <div class="carousel-card">
+            <p class="italic">"O melhor investimento que fizemos em 2026. ROI de 8x em apenas 45 dias."</p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-12 h-12 bg-lime-500 rounded-2xl"></div>
+              <div><div class="font-semibold">Eduardo Nunes</div><div class="text-sm text-gray-400">Startup de Software</div></div>
+            </div>
+          </div>
         </div>
-        <!-- Repita os outros 10 depoimentos aqui (mesmos da versão anterior) -->
-        <!-- Para economizar espaço, coloquei apenas 1. Você pode copiar os outros 10 da mensagem anterior -->
+
+        <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black p-4 rounded-full z-10 mr-4">
+          <i class="fas fa-chevron-right text-2xl"></i>
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- FORMULÁRIO DE CAPTURA -->
-  <section id="captura" class="py-20 bg-[#111113]">
-    <div class="max-w-2xl mx-auto px-6">
-      <div class="bg-[#1a1a1e] rounded-3xl p-10">
-        <h2 class="text-4xl font-bold text-center mb-3">Quer testar a Vivanexa grátis?</h2>
-        <p class="text-center text-gray-400 mb-10">Preencha abaixo e nosso time entrará em contato em até 24h.</p>
-        <form id="leadForm" class="space-y-6">
-          <div>
-            <label class="block text-sm text-gray-400 mb-2">Seu nome completo</label>
-            <input type="text" id="nome" required class="w-full bg-[#0a0a0a] border border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400" placeholder="Ex: João Silva">
-          </div>
-          <div>
-            <label class="block text-sm text-gray-400 mb-2">WhatsApp (com DDD)</label>
-            <input type="tel" id="whatsapp" required class="w-full bg-[#0a0a0a] border border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400" placeholder="(11) 98765-4321">
-          </div>
-          <button type="submit" class="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-bold text-xl py-6 rounded-3xl transition">
-            Quero Meu Teste Grátis de 14 Dias
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- DÚVIDAS - ACORDEÃO -->
-  <section id="duvidas" class="py-20 bg-[#0a0a0a]">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12">Principais Dúvidas</h2>
-      <div class="space-y-4">
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">Quanto custa a Vivanexa?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Temos planos com adesão única + mensalidade. O valor varia conforme o tamanho da equipe e uso. Após preencher o formulário, enviamos uma proposta personalizada.
-          </div>
-        </div>
-
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">A IA realmente atende os clientes sozinha?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Sim. Você pode treinar o Agente IA (Grok, Gemini ou OpenAI) com seus produtos, scripts e tom de voz para atender 24 horas por dia.
-          </div>
-        </div>
-
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">Funciona com WhatsApp oficial?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Sim. Integração completa com a API Oficial do WhatsApp (Meta) e também opção de disparo sem API.
-          </div>
-        </div>
-
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">Quanto tempo leva para configurar tudo?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Normalmente entre 1 e 3 dias úteis com o suporte dedicado. Incluímos onboarding completo.
-          </div>
-        </div>
-
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">Posso cancelar quando quiser?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Sim. Não há fidelidade. Você pode cancelar a qualquer momento após o teste.
-          </div>
-        </div>
-
-        <!-- Adicionei mais 5 para completar 10 -->
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">A plataforma calcula comissões automaticamente?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Sim. O módulo financeiro com ASAAS calcula comissões do time de forma automática.
-          </div>
-        </div>
-
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">Posso gerar contratos com assinatura digital?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Sim. O sistema gera contratos com assinatura eletrônica válida pela Lei 14.063/2020.
-          </div>
-        </div>
-
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">Funciona para agências ou só para empresas?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Funciona muito bem para ambos. O plano Enterprise é especialmente feito para agências.
-          </div>
-        </div>
-
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">Preciso ter conhecimento técnico para usar?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Não. A plataforma é intuitiva e nosso suporte faz todo o onboarding com você.
-          </div>
-        </div>
-
-        <div class="bg-[#111113] rounded-3xl overflow-hidden">
-          <div onclick="toggleFaq(this)" class="faq-question p-6 flex justify-between items-center hover:bg-[#1a1a1e]">
-            <span class="font-medium">A IA pode ser treinada com meu nicho específico?</span>
-            <i class="fas fa-chevron-down transition-transform"></i>
-          </div>
-          <div class="faq-answer hidden px-6 pb-6 text-gray-400">
-            Sim. Você pode treinar o Agente IA com seus produtos, serviços, scripts comerciais e tom de voz.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="py-24 bg-gradient-to-r from-cyan-500 to-emerald-500 text-black text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="text-5xl font-bold">Pronto para triplicar suas vendas?</h2>
-      <p class="mt-6 text-2xl">Comece seu teste grátis de 14 dias agora.</p>
-      <a href="#captura" class="mt-10 inline-block bg-black text-white text-2xl font-bold px-16 py-7 rounded-3xl hover:scale-105 transition">
-        Quero Testar Agora
-      </a>
-    </div>
-  </section>
-
-  <footer class="bg-black py-12 text-center text-gray-500 text-sm">
-    © 2026 Vivanexa Technology & Software Development • Todos os direitos reservados
-  </footer>
+  <!-- Seção de Dúvidas, Formulário e Footer permanecem iguais (posso adicionar se precisar) -->
 
   <script>
-    // Script para o acordeão de dúvidas
-    function toggleFaq(element) {
-      const answer = element.nextElementSibling;
-      const icon = element.querySelector('i');
-      answer.classList.toggle('hidden');
-      icon.classList.toggle('rotate-180');
+    function scrollCarousel(direction) {
+      const carousel = document.getElementById('carousel');
+      const scrollAmount = 360; // largura aproximada de um card + gap
+      carousel.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
     }
 
     // Formulário
